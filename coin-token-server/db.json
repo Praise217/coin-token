@@ -1,0 +1,239 @@
+{
+  "users": [
+    {
+      "id": "1781645437881",
+      "username": "test",
+      "password": "$2b$10$lydX8s9t0dN7iQBS.HQLZOv4nVVx51aWD9KnwHcoAi3oeBU.tIYMi"
+    },
+    {
+      "id": "1782773396323",
+      "username": "praise",
+      "password": "$2b$10$8XXqg7pKUqD9DQnHdNvVeuZZBAlhZUMaRcg48XXxhNs6J75ftrZ1C"
+    },
+    {
+      "id": "1782775048306",
+      "username": "praise2",
+      "email": "praise@gmail.com",
+      "password": "$2b$10$Xamol0a0bjHlgL6kShVUGemAX.t2f4Hbw8ONTt2uOm4ZXWHIA4t1O"
+    },
+    {
+      "id": "1783004586434",
+      "username": "coinova",
+      "email": "coinova@example.com",
+      "password": "$2b$10$9VTUZf1AzxwhSkLupsdNYOjiGH08Qj9IjaJjIs0pU01zRW0ShnWua"
+    }
+  ],
+  "watchlists": [
+    {
+      "userId": "1781645437881",
+      "coins": [
+        "BTC"
+      ]
+    },
+    {
+      "userId": "1782773396323",
+      "coins": [
+        "BTC"
+      ]
+    },
+    {
+      "userId": "1783004586434",
+      "coins": []
+    }
+  ],
+  "coins": [
+    {
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "price": 63112,
+      "change24h": -1.2873
+    },
+    {
+      "symbol": "ETH",
+      "name": "Ethereum",
+      "price": 1787.55,
+      "change24h": -0.8557
+    },
+    {
+      "symbol": "USDT",
+      "name": "Tether",
+      "price": 0.999068,
+      "change24h": -0.02359
+    },
+    {
+      "symbol": "BNB",
+      "name": "BNB",
+      "price": 569.48,
+      "change24h": -0.69389
+    },
+    {
+      "symbol": "USDC",
+      "name": "USDC",
+      "price": 0.999785,
+      "change24h": -0.00366
+    },
+    {
+      "symbol": "XRP",
+      "name": "XRP",
+      "price": 1.079,
+      "change24h": -1.32794
+    },
+    {
+      "symbol": "SOL",
+      "name": "Solana",
+      "price": 76.61,
+      "change24h": -0.04216
+    },
+    {
+      "symbol": "TRX",
+      "name": "TRON",
+      "price": 0.32961,
+      "change24h": -0.1106
+    },
+    {
+      "symbol": "FIGR_HELOC",
+      "name": "Figure Heloc",
+      "price": 1.041,
+      "change24h": null
+    },
+    {
+      "symbol": "HYPE",
+      "name": "Hyperliquid",
+      "price": 65.48,
+      "change24h": -2.39973
+    },
+    {
+      "symbol": "DOGE",
+      "name": "Dogecoin",
+      "price": 0.07247,
+      "change24h": -0.73225
+    },
+    {
+      "symbol": "USDS",
+      "name": "USDS",
+      "price": 0.999721,
+      "change24h": -0.00654
+    },
+    {
+      "symbol": "RAIN",
+      "name": "Rain",
+      "price": 0.0143611,
+      "change24h": -2.05393
+    },
+    {
+      "symbol": "LEO",
+      "name": "LEO Token",
+      "price": 9.52,
+      "change24h": -0.11788
+    },
+    {
+      "symbol": "ZEC",
+      "name": "Zcash",
+      "price": 521.24,
+      "change24h": -0.79912
+    },
+    {
+      "symbol": "WBT",
+      "name": "WhiteBIT Coin",
+      "price": 55.35,
+      "change24h": -1.13633
+    },
+    {
+      "symbol": "XLM",
+      "name": "Stellar",
+      "price": 0.183939,
+      "change24h": -1.10987
+    },
+    {
+      "symbol": "XMR",
+      "name": "Monero",
+      "price": 331.39,
+      "change24h": 1.65322
+    },
+    {
+      "symbol": "LINK",
+      "name": "Chainlink",
+      "price": 7.99,
+      "change24h": -0.32736
+    },
+    {
+      "symbol": "ADA",
+      "name": "Cardano",
+      "price": 0.160188,
+      "change24h": -2.45841
+    },
+    {
+      "symbol": "CC",
+      "name": "Canton",
+      "price": 0.132734,
+      "change24h": -2.67845
+    },
+    {
+      "symbol": "BCH",
+      "name": "Bitcoin Cash",
+      "price": 238.45,
+      "change24h": -2.51363
+    },
+    {
+      "symbol": "DAI",
+      "name": "Dai",
+      "price": 0.999817,
+      "change24h": 0.01526
+    },
+    {
+      "symbol": "USD1",
+      "name": "USD1",
+      "price": 0.998775,
+      "change24h": -0.02146
+    },
+    {
+      "symbol": "GRAM",
+      "name": "Gram (prev. Toncoin)",
+      "price": 1.61,
+      "change24h": -2.20954
+    },
+    {
+      "symbol": "USDE",
+      "name": "Ethena USDe",
+      "price": 0.999637,
+      "change24h": -0.00917
+    },
+    {
+      "symbol": "LTC",
+      "name": "Litecoin",
+      "price": 43.88,
+      "change24h": -1.5158
+    },
+    {
+      "symbol": "USDG",
+      "name": "Global Dollar",
+      "price": 1.001,
+      "change24h": 0.16275
+    },
+    {
+      "symbol": "USYC",
+      "name": "Circle USYC",
+      "price": 1.13,
+      "change24h": null
+    },
+    {
+      "symbol": "SUI",
+      "name": "Sui",
+      "price": 0.733471,
+      "change24h": -0.89137
+    }
+  ],
+  "lastUpdated": "2026-07-13T09:08:15.118Z",
+  "resetCodes": [],
+  "portfolios": [
+    {
+      "userId": "1783004586434",
+      "holdings": [
+        {
+          "coin": "BTC",
+          "amount": 0.5
+        }
+      ]
+    }
+  ]
+}
