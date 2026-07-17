@@ -74,6 +74,155 @@ app.post("/portfolio/add", (req, res) => {
   });
 });
 
+// =====================
+// UPDATE PORTFOLIO HOLDING
+// =====================
+app.put("/portfolio/update", (req, res) => {
+  const user = auth(req);
+
+  if (!user) {
+    return res.status(401).json({
+      message: "Invalid token"
+    });
+  }
+
+  const { coin, amount } = req.body;
+
+  if (!coin || amount === undefined) {
+    return res.status(400).json({
+      message: "Coin and amount are required"
+    });
+  }
+
+  const portfolio = db.portfolios.find(
+    p => p.userId === user.id
+  );
+
+  if (!portfolio) {
+    return res.status(404).json({
+      message: "Portfolio not found"
+    });
+  }
+
+  const holding = portfolio.holdings.find(
+    h => h.coin === coin
+  );
+
+  if (!holding) {
+    return res.status(404).json({
+      message: "Coin not found in portfolio"
+    });
+  }
+
+  holding.amount = Number(amount);
+
+  saveDB();
+
+  res.json({
+    message: "Holding updated successfully",
+    portfolio
+  });
+});
+
+// =====================
+// REMOVE PORTFOLIO HOLDING
+// =====================
+app.delete("/portfolio/remove", (req, res) => {
+  const user = auth(req);
+
+  if (!user) {
+    return res.status(401).json({
+      message: "Invalid token"
+    });
+  }
+
+  const { coin } = req.body;
+
+  if (!coin) {
+    return res.status(400).json({
+      message: "Coin is required"
+    });
+  }
+
+  const portfolio = db.portfolios.find(
+    p => p.userId === user.id
+  );
+
+  if (!portfolio) {
+    return res.status(404).json({
+      message: "Portfolio not found"
+    });
+  }
+
+  const index = portfolio.holdings.findIndex(
+    h => h.coin === coin
+  );
+
+  if (index === -1) {
+    return res.status(404).json({
+      message: "Coin not found in portfolio"
+    });
+  }
+
+  portfolio.holdings.splice(index, 1);
+
+  saveDB();
+
+  res.json({
+    message: "Holding removed successfully",
+    portfolio
+  });
+});
+
+// =====================
+// GET USER PORTFOLIO
+// =====================
+app.get("/portfolio", (req, res) => {
+  const user = auth(req);
+
+  if (!user) {
+    return res.status(401).json({
+      message: "Invalid token"
+    });
+  }
+
+  const portfolio = db.portfolios.find(
+    p => p.userId === user.id
+  );
+
+  if (!portfolio) {
+    return res.json({
+      holdings: [],
+      totalValue: 0
+    });
+  }
+
+  let totalValue = 0;
+
+  const holdings = portfolio.holdings.map(item => {
+    const coin = db.coins.find(
+      c => c.symbol === item.coin
+    );
+
+    const price = coin?.price || 0;
+    const value = price * item.amount;
+
+    totalValue += value;
+
+    return {
+      coin: item.coin,
+      amount: item.amount,
+      price,
+      value
+    };
+  });
+
+  res.json({
+    holdings,
+    totalValue
+  });
+});
+
 app.get("/coins/gainers", (req, res) => {
   const coins = db.coins || [];
 
@@ -467,43 +616,6 @@ app.get("/prices", (req, res) => {
   res.json(prices);
 });
 
-app.post("/watchlist/add", (req, res) => {
-  const user = auth(req);
-  if (!user) return res.status(401).json({ message: "Invalid token" });
-
-  const { coin } = req.body;
-
-  let list = db.watchlists.find(w => w.userId === user.id);
-
-  if (!list) {
-    list = {
-      userId: user.id,
-      coins: []
-    };
-    db.watchlists.push(list);
-  }
-
-  if (!list.coins.includes(coin)) {
-    list.coins.push(coin);
-  }
-
-  fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2));
-
-  res.json({
-    message: "Coin added to watchlist",
-    watchlist: list
-  });
-});
-
-app.get("/watchlist", (req, res) => {
-  const user = auth(req);
-  if (!user) return res.status(401).json({ message: "Invalid token" });
-
-  const list = db.watchlists.find(w => w.userId === user.id);
-
-  res.json(list || { userId: user.id, coins: [] });
-});
-
 if (!db.watchlists) {
   db.watchlists = [];
 }
@@ -540,33 +652,6 @@ app.post("/watchlist/add", (req, res) => {
 });
 
 // GET WATCHLIST (WITH PRICES)
-app.get("/watchlist", (req, res) => {
-  const user = auth(req, res);
-  if (!user) return res.status(401).json({ message: "Invalid token" });
-
-  const watch = getWatchlist(user.id);
-
-  if (!watch) {
-    return res.json({ userId: user.id, coins: [] });
-  }
-
-  const enriched = watch.coins.map(symbol => {
-    const coin = db.prices?.coins?.find?.(c => c.symbol === symbol)
-      || prices?.coins?.find?.(c => c.symbol === symbol);
-
-    return {
-      symbol,
-      name: coin?.name || symbol,
-      price: coin?.price || null,
-      change24h: coin?.change24h || null
-    };
-  });
-
-  res.json({
-    userId: user.id,
-    coins: enriched
-  });
-});
 
 app.get("/coins", (req, res) => {
   res.json({
